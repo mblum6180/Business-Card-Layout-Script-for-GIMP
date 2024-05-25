@@ -1,8 +1,11 @@
 import gimpfu as gfu
 
 def layout_business_cards(image, drawable, num_rows, num_cols, spacing):
-    # Flatten the image to simplify the layer structure
-    flattened = gfu.pdb.gimp_image_flatten(image)
+    # Duplicate the image to avoid altering the original
+    image_copy = image.duplicate()
+
+    # Flatten the duplicated image to simplify the layer structure
+    flattened = gfu.pdb.gimp_image_flatten(image_copy)
 
     # Get card dimensions from the flattened image
     card_width = flattened.width
@@ -58,4 +61,3 @@ gfu.register(
     layout_business_cards)
 
 gfu.main()
-
